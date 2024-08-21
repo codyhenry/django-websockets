@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # * 3rd Party
+    "daphne",  # ! daphne must be at top of INSTALLED_APPS per channels
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,8 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # * 3rd Party
-    "channels",  # ? look into channels daphne and channels-redis
-    "bootstrap5",
+    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -71,6 +73,8 @@ TEMPLATES = [
     },
 ]
 
+# * Allows daphne to control manage.py runserver cmd
+ASGI_APPLICATION = "socketsdemo.asgi.asgi_application"
 WSGI_APPLICATION = "socketsdemo.wsgi.application"
 
 
