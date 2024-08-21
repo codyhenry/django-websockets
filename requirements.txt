@@ -1,4 +1,4 @@
-django==5.0
+django==5.1
 django-bootstrap5==24.2
 redis==5.0.8
 hiredis==3.0.0
