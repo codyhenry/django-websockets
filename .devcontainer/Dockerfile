@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED 1
 
 # ! Automatically installs necessary dependencies, to add any additional packages, add them to requirements.txt
 # [Optional] If your requirements rarely change, uncomment this section to add them to the image.
-COPY /workspaces/django-websockets/requirements.txt /tmp/pip-tmp/
+COPY ../requirements.txt /tmp/pip-tmp/
 RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
    && rm -rf /tmp/pip-tmp
 
