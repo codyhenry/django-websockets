@@ -13,10 +13,15 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
    && rm -rf /tmp/pip-tmp
 
 
-
 COPY . /app/
-# TODO: create CMD to migrate models 
+
+#! Runs migrations only after the image is built. 
 WORKDIR /app/socketsdemo
+
+RUN python manage.py makemigrations
+
+RUN python manage.py migrate
+
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 

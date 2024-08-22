@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+
+    volumes:
+      - ./:/app
+
+    ports:
+      - "8000:8000"
+    # Overrides default command so things don't shut down after the process ends.
+    # command: sleep infinity
+
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - postgres-data-root:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  postgres-data-root:
